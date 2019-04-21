@@ -1,0 +1,9 @@
+%
+%
+clear all;
+load('../../../data/imretreival/imdb.mat');
+run('../ma  vl_setupnn.m');
+load('../../../data/imretreival/net-epoch-20.mat');
+
+x=images.data(:,:,:,1);
+res=vl_simplenn(net,x);

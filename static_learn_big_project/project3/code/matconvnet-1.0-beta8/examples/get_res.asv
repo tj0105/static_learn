@@ -1,0 +1,15 @@
+%
+%
+clear all;
+load('../../../data/imretreival/imdb.mat');
+run('../matlab/vl_setupnn.m');
+load('../../../data/imretreival/net-epoch-20.mat');
+
+batchSize=50;
+for t=1:batchSize:2000
+    batch=((t-1)*batchSize+1):(t*batchSize);
+    temp_res=test_nn(images,batch);
+    y=vl_nnsoftmax(temp_res(12).x);
+    [~,class]=max(y);
+    temp_res(end+1).x=class;
+    result(t)=temp_res
